@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        #demo{
+            width:200px;
+            height:200px;
+            background-color:deepskyblue;
+        }
+    </style>
+</head>
+<body>
+<div id="demo"></div>
+<script>
+    window.$ = function (id) {
+        return new _$(id);
+    };
+    function _$(id) {
+        this.elements = document.getElementById(id);
+    }
+    _$.prototype = {
+        constructor: _$,
+        hide: function () {
+            this.elements.style.display="none";
+            console.log('hide');
+            return this;
+        },
+        show: function () {
+            console.log('show');
+            this.elements.style.display="block";
+            return this;
+        },
+        getName: function (callback) {
+            if (callback) {
+                callback.call(this, this.name);
+            }
+            return this;
+        },
+        setName: function (name) {
+            this.name = name;
+            return this;
+        }
+    };
+    $('demo').setName('exam').getName(function (name) {
+        console.log(name);
+    }).show().hide().show().hide().show();
+    $('demo').hide().show();
+
+</script>
+</body>
+</html>
