@@ -5,6 +5,49 @@
     <title>Title</title>
 </head>
 <body>
+<div id="box"></div>
+<script>
+    //定义一个类
+    function Demo() {
+
+    }
+
+    //添加类的方法
+    Demo.prototype = {
+
+        setName: function (name) {
+            this.name = name;
+            return this;
+        },
+
+        getName: function () {
+            return this.name;
+        },
+
+        setAge: function (age) {
+            this.age = age;
+            return this;
+        },
+
+        getAge: function () {
+            return this.age;
+        }
+    };
+
+    //工厂函数；
+    function Person() {
+        return new Demo();
+    }
+
+    //实现可链式的调用；
+    var nowName = Person().setName("AlexShan").getName();
+
+    console.log(nowName);//AlexShan
+
+    var nowAge = Person().setName("AlexShan").setAge("18").getAge();
+
+    console.log(nowAge);//18
+</script>
 
 </body>
 </html>
