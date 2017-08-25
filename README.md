@@ -1,0 +1,1 @@
+## A simple way to realize jQuery chaining method
