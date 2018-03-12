@@ -1,53 +1,93 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
 </head>
+
 <body>
-<div id="box"></div>
-<script>
-    //定义一个类
-    function Demo() {
+    <div id="box"></div>
+    <script>
+        // 1. ES5
+        //定义一个类
+        function Demo() {
 
-    }
-
-    //添加类的方法
-    Demo.prototype = {
-
-        setName: function (name) {
-            this.name = name;
-            return this;
-        },
-
-        getName: function () {
-            return this.name;
-        },
-
-        setAge: function (age) {
-            this.age = age;
-            return this;
-        },
-
-        getAge: function () {
-            return this.age;
         }
-    };
 
-    //工厂函数；
-    function Person() {
-        return new Demo();
-    }
+        //添加类的方法
+        Demo.prototype = {
 
-    //实现可链式的调用；
-    var nowName = Person().setName("AlexShan").getName();
+            setName: function (name) {
+                this.name = name;
+                return this;
+            },
 
-    console.log(nowName);//AlexShan
+            getName: function () {
+                return this.name;
+            },
 
-    var nowAge = Person().setName("AlexShan").setAge("18").getAge();
+            setAge: function (age) {
+                this.age = age;
+                return this;
+            },
 
-    console.log(nowAge);//18
-</script>
+            getAge: function () {
+                return this.age;
+            }
+        };
+
+        //工厂函数；
+        function Person() {
+            return new Demo();
+        }
+
+        //实现可链式的调用；
+        var nowName = Person().setName("AlexShan").getName();
+
+        console.log(nowName);//AlexShan
+
+        var nowAge = Person().setName("AlexShan").setAge("18").getAge();
+
+        console.log(nowAge);//18
+
+
+
+        // 2. ES6
+        class Dom {
+            constructor() {
+                this.name;
+                this.age;
+            }
+            setName(name) {
+                this.name = name;
+                return this;
+            };
+
+            getName() {
+                return this.name;
+            };
+
+            setAge(age) {
+                this.age = age;
+                return this;
+            };
+
+            getAge() {
+                return this.age;
+            };
+        }
+
+        let dom = new Dom;
+        let newAge = dom.setAge(20).getAge();
+        console.log(newAge);//20
+
+        let newName = dom.setName('Beijing').getName();
+        console.log(newName);//Beijing
+        
+
+    </script>
 
 </body>
+
 </html>
